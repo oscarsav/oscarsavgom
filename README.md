@@ -1,2 +1,2 @@
 # oscarsavgom
-My personal repository.
+Hola, soy Óscar.
