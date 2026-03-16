@@ -2,22 +2,23 @@ name: Node - Lint
 
 on:
   push:
-    branches: [ "**" ]
+    branches: ["**"]
+  pull_request:
+
 jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout del repo
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Instalar Node.js
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: "20"
           cache: "npm"
 
-      - name: Instalar dependencias
+      - name: Install dependencies
         run: npm ci
 
-      - name: Ejecutar lint
+      - name: Run lint
         run: npm run lint
