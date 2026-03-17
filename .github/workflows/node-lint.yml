@@ -12,25 +12,19 @@ jobs:
       - name: Checkout del repo
         uses: actions/checkout@v4
 
-      - name: Debug - dónde estoy y qué archivos hay
+      - name: Debug - comprobar lockfile
         run: |
-          echo "GITHUB_SHA=$GITHUB_SHA"
-          echo "PWD=$(pwd)"
-          echo "Contenido raíz:"
+          echo "PWD: $(pwd)"
           ls -la
-          echo "Buscar lockfiles:"
-          find . -maxdepth 3 -name "package-lock.json" -o -name "npm-shrinkwrap.json" -o -name "yarn.lock" -o -name "package.json" -print
-          echo "Comprobar package-lock.json en raíz:"
-          if [ -f package-lock.json ]; then
-            echo "✅ package-lock.json existe en raíz"
-          else
-            echo "❌ package-lock.json NO existe en raíz"
-          fi
+          echo "----"
+          test -f package-lock.json && echo "✅ package-lock.json existe" || (echo "❌ package-lock.json NO existe" && exit 1)
 
-      - name: Setup Node (sin cache temporalmente)
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: "20"
+          cache: "npm"
+          cache-dependency-path: package-lock.json
 
       - name: Install dependencies
         run: npm ci
