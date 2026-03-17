@@ -36,10 +36,7 @@ jobs:
           pip install -e .
 
       - name: Run tests
-        run: |
-          pytest -q
+        run: pytest -q
 
       - name: Coverage
-        run: |
-          pytest --cov=oscarsavgom --cov-report=term-missing
-``
+        run: pytest --cov=oscarsavgom --cov-report=term-missing
