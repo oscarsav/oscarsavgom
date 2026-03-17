@@ -1,0 +1,9 @@
+README.md
+pyproject.toml
+python_src/oscarsavgom/__init__.py
+python_src/oscarsavgom/app.py
+python_src/oscarsavgom.egg-info/PKG-INFO
+python_src/oscarsavgom.egg-info/SOURCES.txt
+python_src/oscarsavgom.egg-info/dependency_links.txt
+python_src/oscarsavgom.egg-info/top_level.txt
+tests/test_app.py
