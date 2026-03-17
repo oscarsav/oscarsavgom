@@ -2,30 +2,44 @@ name: Python - Tests & Coverage
 
 on:
   push:
-    branches: [ "**" ]
+    branches: ["**"]
   pull_request:
 
 jobs:
   test:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout del repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
-      - name: Configurar Python
-        uses: actions/setup-python@v5
+      - name: Setup Python
+        uses: actions/setup-python@v6
         with:
-          python-version: "3.11"
+          python-version: "3.12"
           cache: "pip"
 
-      - name: Instalar dependencias
+      - name: Debug - ver archivos clave
+        run: |
+          pwd
+          ls -la
+          echo "----"
+          ls -la pyproject.toml requirements.txt || true
+          echo "----"
+          find tests -maxdepth 2 -type f || true
+          echo "----"
+          find python_src -maxdepth 3 -type f || true
+
+      - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+          pip install -e .
 
-      - name: Ejecutar tests
-        run: pytest
+      - name: Run tests
+        run: |
+          pytest -q
 
-      - name: Cobertura de tests
-        run: pytest --cov=. --cov-report=term-missing
+      - name: Coverage
+        run: |
+          pytest --cov=oscarsavgom --cov-report=term-missing
+``
