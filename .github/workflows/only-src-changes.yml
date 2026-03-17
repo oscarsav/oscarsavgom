@@ -1,0 +1,16 @@
+name: Run only when src changes
+
+on:
+  push:
+    paths:
+      - "src/**"
+  pull_request:
+    paths:
+      - "src/**"
+
+jobs:
+  run_if_src_changed:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Mensaje
+        run: echo "Hubo cambios en /src, así que este job se ejecuta"
