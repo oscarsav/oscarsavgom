@@ -1,3 +1,14 @@
 node_modules/
 npm-debug.log*
 .DS_Store
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
