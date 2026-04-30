@@ -1,12 +1,14 @@
 name: Hello GitHub Actions
 
 on:
-  push:
-    branches: [ "main" ]
+  workflow_dispatch: {}
+  # (si ya tienes otros triggers, se pueden dejar)
+  # push:
+  #   branches: [ "main" ]
 
 jobs:
   hello:
     runs-on: ubuntu-latest
     steps:
-      - name: Saludo
-        run: echo "Hola desde GitHub Actions"
+      - name: Say hello
+        run: echo "Hello!"
